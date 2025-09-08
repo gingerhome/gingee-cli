@@ -1,6 +1,6 @@
 # GingerJS CLI: Command Reference
 
-The `gingerjs-cli` is the official, all-in-one command-line interface for the GingerJS platform. It is a powerful tool for both developers and system administrators, designed to streamline every phase of the application lifecycle, from initial project creation to ongoing production management.
+The `gingerjs-cli` is the official, all-in-one command-line interface for the **[GingerJS platform](https://github.com/gingerhome/gingerjs)**. It is a powerful tool for both developers and system administrators, designed to streamline every phase of the application lifecycle, from initial project creation to ongoing production management.
 
 ## Installation
 
