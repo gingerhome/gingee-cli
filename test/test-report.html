@@ -1,0 +1,277 @@
+<html><head><meta charset="utf-8"/><title>GingerJS Test Report</title><style type="text/css">:root {
+  --text-primary: #111;
+  --text-secondary: #4f4f4f;
+  --success: #006633;
+  --success-bright: #80ffbf;
+  --danger: #cc071e;
+  --danger-bright: #fbdfe0;
+  --warning: #995c00;
+  --warning-bright: #ffeea8;
+  --panel: #eee;
+  --border: #949494;
+  --disabled: #6b6b6b;
+}
+
+html,
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  color: var(--text-primary);
+}
+body {
+  padding: 2rem 1rem;
+}
+.jesthtml-content {
+  margin: 0 auto;
+  max-width: 70rem;
+}
+header {
+  display: flex;
+  align-items: center;
+}
+#title {
+  margin: 0;
+  flex-grow: 1;
+}
+#logo {
+  height: 4rem;
+}
+#timestamp {
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+}
+
+#metadata-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.additional-information-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+}
+
+/** SUMMARY */
+#summary {
+  color: var(--text-primary);
+  display: flex;
+  font-family: monospace;
+  font-size: 1rem;
+}
+#summary > div {
+  margin-right: 0.5rem;
+  background: var(--panel);
+  padding: 1rem;
+  min-width: 15rem;
+}
+#summary > div:last-child {
+  margin-right: 0;
+}
+@media only screen and (max-width: 720px) {
+  #summary {
+    flex-direction: column;
+  }
+  #summary > div {
+    margin-right: 0;
+    margin-top: 1rem;
+  }
+  #summary > div:first-child {
+    margin-top: 0;
+  }
+}
+
+.summary-total {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.summary-passed {
+  color: var(--success);
+  border-left: 0.4rem solid var(--success);
+  padding-left: 0.5rem;
+  margin-bottom: 0.15rem;
+}
+.summary-failed,
+.summary-obsolete-snapshots {
+  color: var(--danger);
+  border-left: 0.4rem solid var(--danger);
+  padding-left: 0.5rem;
+  margin-bottom: 0.15rem;
+}
+.summary-pending {
+  color: var(--warning);
+  border-left: 0.4rem solid var(--warning);
+  padding-left: 0.5rem;
+  margin-bottom: 0.15rem;
+}
+.summary-empty {
+  color: var(--disabled);
+  border-left: 0.4rem solid var(--disabled);
+  margin-bottom: 0.15rem;
+}
+
+.test-result {
+  padding: 1rem;
+  margin-bottom: 0.25rem;
+}
+.test-result:last-child {
+  border: 0;
+}
+.test-result.passed {
+  background-color: var(--success-bright);
+  color: var(--success);
+}
+.test-result.failed {
+  background-color: var(--danger-bright);
+  color: var(--danger);
+}
+.test-result.pending {
+  background-color: var(--warning-bright);
+  color: var(--warning);
+}
+
+.test-info {
+  display: flex;
+  justify-content: space-between;
+}
+.test-suitename {
+  width: 20%;
+  text-align: left;
+  font-weight: bold;
+  word-break: break-word;
+}
+.test-title {
+  width: 40%;
+  text-align: left;
+  font-style: italic;
+}
+.test-status {
+  width: 20%;
+  text-align: right;
+}
+.test-duration {
+  width: 10%;
+  text-align: right;
+  font-size: 0.85rem;
+}
+
+.failureMessages {
+  padding: 0 1rem;
+  margin-top: 1rem;
+  border-top: 1px dashed var(--danger);
+}
+.failureMessages.suiteFailure {
+  border-top: none;
+}
+.failureMsg {
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+
+.suite-container {
+  margin-bottom: 1rem;
+}
+.suite-info {
+  padding: 1rem;
+  background-color: var(--panel);
+  color: var(--text-secondary);
+  border: 0.15rem solid;
+  border-color: var(--panel);
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+.suite-info:hover {
+  border-color: var(--border);
+  cursor: pointer;
+}
+.suite-info .suite-path {
+  word-break: break-all;
+  flex-grow: 1;
+  font-family: monospace;
+  font-size: 1rem;
+}
+.suite-info .suite-time {
+  margin-left: 1rem;
+  padding: 0.2rem 0.3rem;
+  font-size: 0.85rem;
+}
+.suite-info .suite-time.warn {
+  background-color: var(--danger);
+  color: #fff;
+}
+.suite-info:before {
+  content: "\2303";
+  display: inline-block;
+  margin-right: 1rem;
+  transform: rotate(180deg) translateY(0.15rem);
+}
+.suite-container[open] .suite-info:before {
+  transform: rotate(0deg) translateY(0.15rem);
+}
+
+/* CONSOLE LOGS */
+.suite-consolelog {
+  margin-bottom: 0.25rem;
+  padding: 1rem;
+  background-color: var(--panel);
+}
+.suite-consolelog-header {
+  font-weight: bold;
+}
+.suite-consolelog-item {
+  padding: 0.5rem;
+}
+.suite-consolelog-item pre {
+  margin: 0.5rem 0;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+.suite-consolelog-item-origin {
+  color: var(--text-secondary);
+  font-weight: bold;
+}
+.suite-consolelog-item-message {
+  color: var(--text-primary);
+  font-size: 1rem;
+  padding: 0 0.5rem;
+}
+
+/* OBSOLETE SNAPSHOTS */
+.suite-obsolete-snapshots {
+  margin-bottom: 0.25rem;
+  padding: 1rem;
+  background-color: var(--danger-bright);
+  color: var(--danger);
+}
+.suite-obsolete-snapshots-header {
+  font-weight: bold;
+}
+.suite-obsolete-snapshots-item {
+  padding: 0.5rem;
+}
+.suite-obsolete-snapshots-item pre {
+  margin: 0.5rem 0;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+.suite-obsolete-snapshots-item-message {
+  color: var(--text-primary);
+  font-size: 1rem;
+  padding: 0 0.5rem;
+}
+</style></head><body><main class="jesthtml-content"><header><h1 id="title">GingerJS Test Report</h1></header><section id="metadata-container"><div id="timestamp">Started: 2025-09-05 22:24:05</div><div id="summary"><div id="suite-summary"><div class="summary-total">Suites (16)</div><div class="summary-passed ">16 passed</div><div class="summary-failed  summary-empty">0 failed</div><div class="summary-pending  summary-empty">0 pending</div></div><div id="test-summary"><div class="summary-total">Tests (37)</div><div class="summary-passed ">37 passed</div><div class="summary-failed  summary-empty">0 failed</div><div class="summary-pending  summary-empty">0 pending</div></div></div></section><details id="suite-1" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">E:\projects\gingerjs-cli\test\integration\init.test.js</div><div class="suite-time">1.13s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">init.js - Integration Test</div><div class="test-title">should successfully scaffold a new project and install dependencies</div><div class="test-status">passed</div><div class="test-duration">0.029s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">init.js - Integration Test</div><div class="test-title">should scaffold a project but skip dependency installation if user declines</div><div class="test-status">passed</div><div class="test-duration">0.004s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">init.js - Integration Test</div><div class="test-title">should fail if the project directory already exists</div><div class="test-status">passed</div><div class="test-duration">0.026s</div></div></div></div></details><details id="suite-2" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">E:\projects\gingerjs-cli\test\integration\deleteApp.test.js</div><div class="suite-time">0.513s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">deleteApp.js - Integration Test</div><div class="test-title">should call the delete API after the user provides correct confirmation text</div><div class="test-status">passed</div><div class="test-duration">0.256s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">deleteApp.js - Integration Test</div><div class="test-title">should NOT call the delete API if confirmation text is incorrect</div><div class="test-status">passed</div><div class="test-duration">0.129s</div></div></div></div></details><details id="suite-3" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">E:\projects\gingerjs-cli\test\unit\installerUtils.test.js</div><div class="suite-time">0.275s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">installerUtils.js - Unit Tests &gt; _resolveStoreUrl</div><div class="test-title">should append gstore.json to a directory URL</div><div class="test-status">passed</div><div class="test-duration">0.003s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">installerUtils.js - Unit Tests &gt; _resolveStoreUrl</div><div class="test-title">should append gstore.json to a directory URL with a trailing slash</div><div class="test-status">passed</div><div class="test-duration"> </div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">installerUtils.js - Unit Tests &gt; _resolveStoreUrl</div><div class="test-title">should return the URL as is if it already points to gstore.json</div><div class="test-status">passed</div><div class="test-duration"> </div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">installerUtils.js - Unit Tests &gt; _resolveStoreUrl</div><div class="test-title">should throw an error for an incorrect filename</div><div class="test-status">passed</div><div class="test-duration">0.023s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">installerUtils.js - Unit Tests &gt; _resolveDownloadUrl</div><div class="test-title">should return an absolute URL as is</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">installerUtils.js - Unit Tests &gt; _resolveDownloadUrl</div><div class="test-title">should resolve a relative URL against the store URL</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">installerUtils.js - Unit Tests &gt; _substituteEnvVars</div><div class="test-title">should substitute an environment variable placeholder</div><div class="test-status">passed</div><div class="test-duration"> </div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">installerUtils.js - Unit Tests &gt; _substituteEnvVars</div><div class="test-title">should throw an error for a missing environment variable</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">installerUtils.js - Unit Tests &gt; _validateAppPreset</div><div class="test-title">should not throw for a valid upgrade preset</div><div class="test-status">passed</div><div class="test-duration"> </div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">installerUtils.js - Unit Tests &gt; _validateAppPreset</div><div class="test-title">should throw if the action key is missing</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div></div></details><details id="suite-4" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">E:\projects\gingerjs-cli\test\integration\listApps.test.js</div><div class="suite-time">0.145s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">listApps.js - Integration Test</div><div class="test-title">should fetch the app list and display it in a table on success</div><div class="test-status">passed</div><div class="test-duration">0.009s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">listApps.js - Integration Test</div><div class="test-title">should fail gracefully if not logged in</div><div class="test-status">passed</div><div class="test-duration">0.013s</div></div></div></div></details><details id="suite-5" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">E:\projects\gingerjs-cli\test\integration\installStoreApp.test.js</div><div class="suite-time">0.233s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">installStoreApp.js - Integration Test</div><div class="test-title">should perform a full installation and succeed</div><div class="test-status">passed</div><div class="test-duration">0.02s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">installStoreApp.js - Integration Test</div><div class="test-title">should call process.exit(1) on failure</div><div class="test-status">passed</div><div class="test-duration">0.022s</div></div></div></div></details><details id="suite-6" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">E:\projects\gingerjs-cli\test\integration\logout.test.js</div><div class="suite-time">0.202s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">logout.js - Integration Test</div><div class="test-title">should find and remove the correct session file if it exists</div><div class="test-status">passed</div><div class="test-duration">0.047s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">logout.js - Integration Test</div><div class="test-title">should do nothing if the session file does not exist</div><div class="test-status">passed</div><div class="test-duration">0.032s</div></div></div></div></details><details id="suite-7" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">E:\projects\gingerjs-cli\test\integration\login.test.js</div><div class="suite-time">0.176s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">login.js - Integration Test</div><div class="test-title">should authenticate, receive a cookie, and save the session file</div><div class="test-status">passed</div><div class="test-duration">0.009s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">login.js - Integration Test</div><div class="test-title">should fail gracefully if authentication fails</div><div class="test-status">passed</div><div class="test-duration">0.023s</div></div></div></div></details><details id="suite-8" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">E:\projects\gingerjs-cli\test\integration\addApp.test.js</div><div class="suite-time">0.147s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">addApp.js - Integration Test</div><div class="test-title">should scaffold a new MPA app with DB and JWT config based on user input</div><div class="test-status">passed</div><div class="test-duration">0.019s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">addApp.js - Integration Test</div><div class="test-title">should fail if the app directory already exists</div><div class="test-status">passed</div><div class="test-duration">0.021s</div></div></div></div></details><details id="suite-9" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">E:\projects\gingerjs-cli\test\integration\addScript.test.js</div><div class="suite-time">0.165s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">addScript.js - Integration Test</div><div class="test-title">should create a new script file with boilerplate at the correct path</div><div class="test-status">passed</div><div class="test-duration">0.01s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">addScript.js - Integration Test</div><div class="test-title">should fail if the target application does not exist</div><div class="test-status">passed</div><div class="test-duration">0.013s</div></div></div></div></details><details id="suite-10" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">E:\projects\gingerjs-cli\test\integration\installApp.test.js</div><div class="suite-time">0.149s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">installApp.js - Integration Test (Local Install)</div><div class="test-title">should perform a full interactive installation from a local .gin file</div><div class="test-status">passed</div><div class="test-duration">0.01s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">installApp.js - Integration Test (Local Install)</div><div class="test-title">should fail if the provided .gin path does not exist</div><div class="test-status">passed</div><div class="test-duration">0.019s</div></div></div></div></details><details id="suite-11" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">E:\projects\gingerjs-cli\test\integration\resetGlade.test.js</div><div class="suite-time">0.129s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">resetGlade.js - Integration Test</div><div class="test-title">should delete, reinstall, and reconfigure glade after user confirmation</div><div class="test-status">passed</div><div class="test-duration">0.014s</div></div></div></div></details><details id="suite-12" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">E:\projects\gingerjs-cli\test\integration\rollbackApp.test.js</div><div class="suite-time">0.13s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">rollbackApp.js - Integration Test</div><div class="test-title">should perform a full interactive rollback with permission changes</div><div class="test-status">passed</div><div class="test-duration">0.011s</div></div></div></div></details><details id="suite-13" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">E:\projects\gingerjs-cli\test\integration\resetPwd.test.js</div><div class="suite-time">0.147s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">resetPwd.js - Integration Test</div><div class="test-title">should hash a new password and correctly update glade/box/app.json</div><div class="test-status">passed</div><div class="test-duration">0.008s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">resetPwd.js - Integration Test</div><div class="test-title">should fail if passwords do not match</div><div class="test-status">passed</div><div class="test-duration">0.014s</div></div></div></div></details><details id="suite-14" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">E:\projects\gingerjs-cli\test\integration\listBackups.test.js</div><div class="suite-time">0.126s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">listBackups.js - Integration Test</div><div class="test-title">should fetch the backup list and display it in a table</div><div class="test-status">passed</div><div class="test-duration">0.007s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">listBackups.js - Integration Test</div><div class="test-title">should display a message if no backups are found</div><div class="test-status">passed</div><div class="test-duration">0.003s</div></div></div></div></details><details id="suite-15" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">E:\projects\gingerjs-cli\test\integration\upgradeApp.test.js</div><div class="suite-time">0.14s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">upgradeApp.js - Integration Test</div><div class="test-title">should perform a full interactive upgrade with permission changes</div><div class="test-status">passed</div><div class="test-duration">0.01s</div></div></div></div></details><details id="suite-16" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">E:\projects\gingerjs-cli\test\integration\packageApp.test.js</div><div class="suite-time">0.139s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">packageApp.js - Integration Test</div><div class="test-title">should call the package API and save the streamed response to a file</div><div class="test-status">passed</div><div class="test-duration">0.011s</div></div></div></div></details></main></body></html>

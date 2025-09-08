@@ -1,0 +1,34 @@
+{
+    "server": {
+        "https": {
+            "enabled": false,
+            "port": 443
+        },
+        "http": {
+            "enabled": true,
+            "port": 7070
+        }
+    },
+    "content_encoding": {
+        "enabled": true
+    },
+    "box": {
+        "allowed_modules": []
+    },
+    "web_root": "./web",
+    "cache": {
+        "provider": "memory"
+    },
+    "default_app": "glade",
+    "privileged_apps": [
+        "glide",
+        "glade"
+    ],
+    "logging": {
+        "level": "error",
+        "rotation": {
+            "period_days": 7,
+            "max_size_mb": 50
+        }
+    }
+}
