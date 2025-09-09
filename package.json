@@ -6,10 +6,34 @@
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand",
     "build": "node ./build/package.js"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gingerhome/gingerjs-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gingerhome/gingerjs-cli/issues"
+  },
+  "homepage": "https://github.com/gingerhome/gingerjs-cli#readme",
+  "keywords": [
+    "command line",
+    "cli",
+    "gingerjs",
+    "genai",
+    "ai-authored",
+    "collaborative-ai",
+    "web server",
+    "app server",
+    "app platform",
+    "app framework",
+    "framework",
+    "backend",
+    "sandbox",
+    "multi-database",
+    "enterprise"
+  ],
   "author": "",
-  "license": "ISC",
-  "description": "",
+  "license": "MIT",
+  "description": "The GingerJS Command Line Interface (CLI), official command line tool for creating and managing GingerJS projects.",
   "dependencies": {
     "archiver": "^7.0.1",
     "argon2": "^0.44.0",
