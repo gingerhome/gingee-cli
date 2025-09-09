@@ -72,8 +72,8 @@ async function init(projectName) {
     spinner.start('Installing `glade` admin panel...');
 
     // Find the glade.gin file using require.resolve, which is robust.
-    // It looks for the 'gingerjs' package in the CLI's own node_modules.
-    const gladeGinPath = require.resolve('gingerjs/templates/glade.gin');
+    // It looks for the 'gingerjs-core' package in the CLI's own node_modules.
+    const gladeGinPath = require.resolve('gingerjs-core/templates/glade.gin');
     const gladePackageBuffer = fs.readFileSync(gladeGinPath);
     const gladeDestPath = path.join(projectPath, 'web', 'glade');
 

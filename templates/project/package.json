@@ -7,7 +7,7 @@
     "dev": "nodemon start.js"
   },
   "dependencies": {
-    "gingerjs": "^1.0.0"
+    "gingerjs-core": "^1.0.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.0"

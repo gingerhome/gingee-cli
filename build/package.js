@@ -59,7 +59,7 @@ async function buildCliPackage() {
         };
 
         console.log(`Setting GingerJS version to "${GINGERJS_VERSION}"`);
-        distPackageJson.dependencies["gingerjs"] = GINGERJS_VERSION;
+        distPackageJson.dependencies["gingerjs-core"] = GINGERJS_VERSION;
 
         // 5. Write the final package.json
         fs.writeJsonSync(
