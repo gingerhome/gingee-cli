@@ -198,7 +198,14 @@ describe('init.js - Integration Test', () => {
         const mockConsoleError = jest.spyOn(console, 'error').mockImplementation();
 
         jest.mock('fs-extra', () => ({
-            existsSync: jest.fn().mockReturnValue(true) //simulate project directory exists condition
+            existsSync: jest.fn((p) => {
+                // If checking for ginger.json (the "am I in a project?" check), return FALSE.
+                if (p.endsWith('ginger.json')) {
+                    return false;
+                }
+                // If checking for the target project directory, return TRUE.
+                return true;
+            })
         }));
         const fs = require('fs-extra');
 
@@ -210,5 +217,26 @@ describe('init.js - Integration Test', () => {
 
         mockExit.mockRestore();
         mockConsoleError.mockRestore();
+    });
+
+    it('should fail if run from inside an existing GingerJS project', async () => {
+        const mockExit = jest.spyOn(process, 'exit').mockImplementation((code) => {
+            throw new Error(`process.exit: ${code}`);
+        });
+
+        jest.mock('fs-extra', () => ({
+            // This time, the "am I in a project?" check returns TRUE.
+            existsSync: jest.fn().mockReturnValue(true) 
+        }));
+        
+        init = require('../../commands/init').init;
+        
+        await expect(init('new-project')).rejects.toThrow('process.exit: 1');
+
+        // Verify the *new* error message was logged
+        expect(console.error).toHaveBeenCalledWith(expect.stringContaining("Error"), expect.stringContaining("Command cannot be run inside an existing GingerJS project."));
+        expect(mockExit).toHaveBeenCalledWith(1);
+
+        mockExit.mockRestore();
     });
 });
