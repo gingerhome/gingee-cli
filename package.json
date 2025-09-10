@@ -1,7 +1,10 @@
 {
   "name": "gingee-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
+  "bin": {
+    "gingee-cli": "./index.js"
+  },
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand",
     "build": "node ./build/package.js"
