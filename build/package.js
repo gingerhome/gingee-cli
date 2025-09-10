@@ -59,7 +59,7 @@ async function buildCliPackage() {
         };
 
         console.log(`Setting Gingee version to "${GINGEE_VERSION}"`);
-        distPackageJson.dependencies["gingee-core"] = GINGEE_VERSION;
+        distPackageJson.dependencies["gingee"] = GINGEE_VERSION;
 
         // 5. Write the final package.json
         fs.writeJsonSync(
