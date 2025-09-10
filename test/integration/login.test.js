@@ -2,7 +2,7 @@
 const path = require('path');
 const os = require('os');
 const crypto = require('crypto');
-const { exists } = require('../../../gingerjs/build/dist/gingerjs/modules/fs');
+const { exists } = require('../../../gingee/build/dist/gingee/modules/fs');
 const { mkdir, mkdirSync } = require('fs');
 
 describe('login.js - Integration Test', () => {
@@ -57,7 +57,7 @@ describe('login.js - Integration Test', () => {
         );
         
         // Verify session directory was ensured
-        const configDir = path.join(os.homedir(), '.gingerjs');
+        const configDir = path.join(os.homedir(), '.gingee');
         expect(fs.ensureDirSync).toHaveBeenCalledWith(configDir);
         
         // Verify session file was written with correct content

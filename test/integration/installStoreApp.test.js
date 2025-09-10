@@ -69,13 +69,13 @@ describe('installStoreApp.js - Integration Test', () => {
         installStoreApp = require('../../commands/installStoreApp').installStoreApp;
 
         // --- RUN THE COMMAND ---
-        await installStoreApp('my-app', { gStoreUrl: 'http://fakestore.com/', serverUrl: 'http://ginger.server' });
+        await installStoreApp('my-app', { gStoreUrl: 'http://fakestore.com/', serverUrl: 'http://gingee.server' });
         await new Promise(process.nextTick);
 
         // --- ASSERTIONS ---
         expect(apiClient.installApp).toHaveBeenCalledTimes(1);
         expect(apiClient.installApp).toHaveBeenCalledWith(
-            'http://ginger.server',
+            'http://gingee.server',
             'my-app',
             'my-app.gin',
             Buffer.from('repacked-gin-buffer'),
@@ -135,7 +135,7 @@ describe('installStoreApp.js - Integration Test', () => {
         installStoreApp = require('../../commands/installStoreApp').installStoreApp;
 
         // --- RUN AND ASSERT ---
-        await expect(installStoreApp('my-app', { gStoreUrl: 'http://fakestore.com/', serverUrl: 'http://ginger.server' }))
+        await expect(installStoreApp('my-app', { gStoreUrl: 'http://fakestore.com/', serverUrl: 'http://gingee.server' }))
             .rejects.toThrow('process.exit: 1');
 
         expect(mockExit).toHaveBeenCalledWith(1);

@@ -36,8 +36,8 @@ function getService() {
     const scriptPath = path.join(projectRoot, 'start.js');
 
     return new Service({
-        name: 'GingerJS Server',
-        description: `GingerJS server instance running at ${projectRoot}`,
+        name: 'Gingee Server',
+        description: `Gingee server instance running at ${projectRoot}`,
         script: scriptPath
     });
 }
@@ -56,7 +56,7 @@ async function install() {
         console.log(chalk.bgGreen('✅ Success!'), chalk.blueBright(`Service installed for ${platformName}.`));
         console.log('Starting the service...');
         svc.start();
-        console.log(chalk.blueBright('Service started. Your GingerJS server is now running in the background.'));
+        console.log(chalk.blueBright('Service started. Your Gingee server is now running in the background.'));
     });
 
     svc.on('alreadyinstalled', () => {
@@ -69,7 +69,7 @@ async function install() {
         console.log(chalk.yellow('On Windows, you may need to run from an Administrator terminal.'));
     });
 
-    console.log(chalk.blue(`Attempting to install the GingerJS service for ${platformName}...`));
+    console.log(chalk.blue(`Attempting to install the Gingee service for ${platformName}...`));
     svc.install();
 }
 

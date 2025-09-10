@@ -20,7 +20,7 @@ async function listApps(options) {
         if (apps.length === 0) {
             console.log(chalk.yellow('No applications are currently installed.'));
         } else {
-            console.log(chalk.blueBright(`Installed Applications at GingerJS Server : ${serverUrl}`));
+            console.log(chalk.blueBright(`Installed Applications at Gingee Server : ${serverUrl}`));
             console.table(apps);
         }
 

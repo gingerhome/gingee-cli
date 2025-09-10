@@ -4,7 +4,7 @@ const fs = require('fs-extra');
 const axios = require('axios');
 const { getCredsFilePath } = require('./apiClient');
 
-const configDir = path.join(os.homedir(), '.gingerjs');
+const configDir = path.join(os.homedir(), '.gingee');
 
 async function login(options = {}) {
     let { serverUrl = 'http://localhost:7070', username = 'admin', password } = options;

@@ -1,5 +1,5 @@
 {
-  "name": "my-gingerjs-project",
+  "name": "my-gingee-project",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -7,7 +7,7 @@
     "dev": "nodemon start.js"
   },
   "dependencies": {
-    "gingerjs-core": "^1.0.0"
+    "gingee": "^1.0.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.0"

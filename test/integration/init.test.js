@@ -5,7 +5,7 @@ const path = require('path');
 jest.mock('child_process');
 
 // A more direct way to mock require.resolve
-jest.spyOn(require, 'resolve').mockReturnValue(path.resolve('/fake/cli/node_modules/gingerjs/templates/glade.gin'));
+jest.spyOn(require, 'resolve').mockReturnValue(path.resolve('/fake/cli/node_modules/gingee/templates/glade.gin'));
 
 
 describe('init.js - Integration Test', () => {
@@ -199,8 +199,8 @@ describe('init.js - Integration Test', () => {
 
         jest.mock('fs-extra', () => ({
             existsSync: jest.fn((p) => {
-                // If checking for ginger.json (the "am I in a project?" check), return FALSE.
-                if (p.endsWith('ginger.json')) {
+                // If checking for gingee.json (the "am I in a project?" check), return FALSE.
+                if (p.endsWith('gingee.json')) {
                     return false;
                 }
                 // If checking for the target project directory, return TRUE.
@@ -219,7 +219,7 @@ describe('init.js - Integration Test', () => {
         mockConsoleError.mockRestore();
     });
 
-    it('should fail if run from inside an existing GingerJS project', async () => {
+    it('should fail if run from inside an existing Gingee project', async () => {
         const mockExit = jest.spyOn(process, 'exit').mockImplementation((code) => {
             throw new Error(`process.exit: ${code}`);
         });
@@ -234,7 +234,7 @@ describe('init.js - Integration Test', () => {
         await expect(init('new-project')).rejects.toThrow('process.exit: 1');
 
         // Verify the *new* error message was logged
-        expect(console.error).toHaveBeenCalledWith(expect.stringContaining("Error"), expect.stringContaining("Command cannot be run inside an existing GingerJS project."));
+        expect(console.error).toHaveBeenCalledWith(expect.stringContaining("Error"), expect.stringContaining("Command cannot be run inside an existing Gingee project."));
         expect(mockExit).toHaveBeenCalledWith(1);
 
         mockExit.mockRestore();

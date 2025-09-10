@@ -1,5 +1,5 @@
 {
-  "name": "gingerjs-cli",
+  "name": "gingee-cli",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -8,16 +8,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gingerhome/gingerjs-cli.git"
+    "url": "https://github.com/gingerhome/gingee-cli.git"
   },
   "bugs": {
-    "url": "https://github.com/gingerhome/gingerjs-cli/issues"
+    "url": "https://github.com/gingerhome/gingee-cli/issues"
   },
-  "homepage": "https://github.com/gingerhome/gingerjs-cli#readme",
+  "homepage": "https://github.com/gingerhome/gingee-cli#readme",
   "keywords": [
     "command line",
     "cli",
-    "gingerjs",
+    "gingee",
     "genai",
     "ai-authored",
     "collaborative-ai",
@@ -33,7 +33,7 @@
   ],
   "author": "",
   "license": "MIT",
-  "description": "The GingerJS Command Line Interface (CLI), official command line tool for creating and managing GingerJS projects.",
+  "description": "The Gingee Command Line Interface (CLI), official command line tool for creating and managing Gingee projects.",
   "dependencies": {
     "archiver": "^7.0.1",
     "argon2": "^0.44.0",
@@ -42,7 +42,7 @@
     "commander": "^14.0.0",
     "form-data": "^4.0.4",
     "fs-extra": "^11.3.1",
-    "gingerjs-core": "^1.0.0",
+    "gingee": "^1.0.0",
     "inquirer": "^12.9.2",
     "ora": "^8.2.0",
     "yauzl": "^3.2.0"

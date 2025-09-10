@@ -41,7 +41,7 @@ async function deleteApp(options) {
             }
 
             spinner.succeed(chalk.bgGreen(`✅ Success!`));
-            console.log(chalk.blueBright(`App '${appName}' deleted from GingerJS Server - ${serverUrl}`));
+            console.log(chalk.blueBright(`App '${appName}' deleted from Gingee Server - ${serverUrl}`));
         } else {
             console.log(chalk.bgGreen(`Canceled: `), chalk.blueBright('Deletion cancelled. No changes made.'));
         }

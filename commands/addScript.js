@@ -23,7 +23,7 @@ async function addScript(appName, scriptPath) {
 
         fs.ensureDirSync(path.dirname(finalPath));
 
-        const boilerplate = `module.exports = async function() {\n    await ginger(async ($g) => {\n        // Your script logic goes here\n        $g.response.send('Hello from ${scriptPath}');\n    });\n};`;
+        const boilerplate = `module.exports = async function() {\n    await gingee(async ($g) => {\n        // Your script logic goes here\n        $g.response.send('Hello from ${scriptPath}');\n    });\n};`;
 
         fs.writeFileSync(finalPath, boilerplate);
 

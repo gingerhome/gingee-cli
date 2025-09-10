@@ -16,7 +16,7 @@ async function upgradeStoreApp(appName, options) {
     const { default: chalk } = await import('chalk');
     const { default: ora } = await import('ora');
     const spinner = ora();
-    const tempDir = path.join(os.tmpdir(), `ginger-upgrade-store-${Date.now()}`);
+    const tempDir = path.join(os.tmpdir(), `gingee-upgrade-store-${Date.now()}`);
 
     const { gStoreUrl, serverUrl } = options;
 

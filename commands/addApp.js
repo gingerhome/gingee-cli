@@ -16,7 +16,7 @@ async function addApp(appName) {
             throw new Error(`An application named '${appName}' already exists at ${appPath}`);
         }
 
-        console.log(`Creating a new GingerJS app named '${appName}'...`);
+        console.log(`Creating a new Gingee app named '${appName}'...`);
 
         // --- Run the interactive wizard ---
         const answers = await inquirer.prompt([
@@ -98,7 +98,7 @@ async function addApp(appName) {
         fs.writeJsonSync(path.join(boxPath, 'app.json'), appConfig, { spaces: 2 });
 
         // --- Create hello.js ---
-        const helloScriptContent = `module.exports = async function() {\n   await ginger(async ($g) => {\n        $g.response.send({ message: 'Hello from the ${appName} server script!' });\n    });\n};`;
+        const helloScriptContent = `module.exports = async function() {\n   await gingee(async ($g) => {\n        $g.response.send({ message: 'Hello from the ${appName} server script!' });\n    });\n};`;
         fs.writeFileSync(path.join(boxPath, 'hello.js'), helloScriptContent);
 
         // --- Create index.html ---

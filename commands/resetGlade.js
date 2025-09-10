@@ -43,7 +43,7 @@ async function resetGlade() {
 
         // --- Re-installation ---
         spinner.start('Installing a clean version of `glade`...');
-        const gladeGinPath = require.resolve('gingerjs/templates/glade.gin');
+        const gladeGinPath = require.resolve('gingee/templates/glade.gin');
         const gladePackageBuffer = fs.readFileSync(gladeGinPath);
         await _unzipBuffer(gladePackageBuffer, gladeAppPath);
         spinner.succeed('Clean `glade` version installed.');

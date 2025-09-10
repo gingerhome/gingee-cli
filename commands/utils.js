@@ -5,20 +5,20 @@ const { error } = require('console');
 
 function getProjectRoot() {
     const projectRoot = process.cwd();
-    if (!fs.existsSync(path.join(projectRoot, 'ginger.json'))) {
-        throw new Error('This command must be run from the root of a GingerJS project.');
+    if (!fs.existsSync(path.join(projectRoot, 'gingee.json'))) {
+        throw new Error('This command must be run from the root of a Gingee project.');
     }
     return projectRoot;
 }
 
 /**
- * Reads the ginger.json file and resolves the correct, absolute web_root path.
+ * Reads the gingee.json file and resolves the correct, absolute web_root path.
  * Correctly handles both relative and absolute paths from the config.
  * @param {string} projectRoot - The absolute path to the project root.
  * @returns {string} The absolute path to the web root directory.
  */
 function getWebRoot(projectRoot) {
-    const configPath = path.join(projectRoot, 'ginger.json');
+    const configPath = path.join(projectRoot, 'gingee.json');
     const config = fs.readJsonSync(configPath);
     const configWebPath = config.web_root || './web';
 

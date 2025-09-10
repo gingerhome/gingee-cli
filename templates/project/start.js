@@ -1,6 +1,6 @@
-// This file starts the GingerJS server engine.
+// This file starts the Gingee server engine.
 try{
-	require('gingerjs');
+	require('gingee');
 }catch(err){
-	console.error(`Error running GingerJS: ${err.message}`); 
+	console.error(`Error running Gingee: ${err.message}`); 
 }

@@ -3,13 +3,13 @@ const path = require('path');
 
 async function buildCliPackage() {
     try {
-        console.log('Starting GingerJS CLI package build...');
+        console.log('Starting Gingee CLI package build...');
 
-        const GINGERJS_VERSION = "^1.0.0";
+        const GINGEE_VERSION = "^1.0.0";
 
         // 1. Define Paths
         const projectRoot = path.resolve(__dirname, '..');
-        const packageDest = path.join(projectRoot, 'build', 'dist', 'gingerjs-cli');
+        const packageDest = path.join(projectRoot, 'build', 'dist', 'gingee-cli');
 
         // 2. Clean Destination
         console.log(`Cleaning destination: ${packageDest}`);
@@ -58,8 +58,8 @@ async function buildCliPackage() {
             optionalDependencies: sourcePackageJson.optionalDependencies
         };
 
-        console.log(`Setting GingerJS version to "${GINGERJS_VERSION}"`);
-        distPackageJson.dependencies["gingerjs-core"] = GINGERJS_VERSION;
+        console.log(`Setting Gingee version to "${GINGEE_VERSION}"`);
+        distPackageJson.dependencies["gingee-core"] = GINGEE_VERSION;
 
         // 5. Write the final package.json
         fs.writeJsonSync(
@@ -68,7 +68,7 @@ async function buildCliPackage() {
             { spaces: 2 }
         );
 
-        console.log('\n\x1b[32m%s\x1b[0m', `✅ GingerJS CLI package created successfully!`);
+        console.log('\n\x1b[32m%s\x1b[0m', `✅ Gingee CLI package created successfully!`);
         console.log(`   Output location: ${packageDest}`);
         console.log(`\nTo publish, run the following commands:\n`);
         console.log(`  cd ${path.relative(process.cwd(), packageDest)}`);

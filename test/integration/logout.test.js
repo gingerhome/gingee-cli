@@ -35,7 +35,7 @@ describe('logout.js - Integration Test', () => {
 
         // --- ASSERTIONS ---
         const expectedHash = crypto.createHash('sha256').update(serverUrl).digest('hex');
-        const expectedPath = path.join(os.homedir(), '.gingerjs', 'sessions', `${expectedHash}.json`);
+        const expectedPath = path.join(os.homedir(), '.gingee', 'sessions', `${expectedHash}.json`);
 
         // Verify it checked for the file
         expect(fs.existsSync).toHaveBeenCalledWith(expectedPath);

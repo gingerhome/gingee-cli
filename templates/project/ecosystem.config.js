@@ -1,7 +1,7 @@
 module.exports = {
   apps: [{
     // The name of your application, as it will appear in PM2.
-    name: 'gingerjs-server',
+    name: 'gingee-server',
     
     // The script that starts your application.
     script: 'start.js',

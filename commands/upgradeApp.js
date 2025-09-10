@@ -7,7 +7,7 @@ const apiClient = require('./apiClient');
 async function upgradeApp(options) {
     const { default: chalk } = await import('chalk');
     const { default: ora } = await import('ora');
-    const tempDir = path.join(os.tmpdir(), `ginger-upgrade-${Date.now()}`);
+    const tempDir = path.join(os.tmpdir(), `gingee-upgrade-${Date.now()}`);
 
     const { serverUrl, appName, ginPath: ginFilePath, file: presetFilePath } = options;
     let finalPermissions, finalDbConfig;

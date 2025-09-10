@@ -1,15 +1,15 @@
-# GingerJS CLI: Command Reference
+# Gingee CLI: Command Reference
 
-The `gingerjs-cli` is the official, all-in-one command-line interface for the **[GingerJS platform](https://github.com/gingerhome/gingerjs)**. It is a powerful tool for both developers and system administrators, designed to streamline every phase of the application lifecycle, from initial project creation to ongoing production management.
+The `gingee-cli` is the official, all-in-one command-line interface for the **[Gingee platform](https://github.com/gingerhome/gingee)**. It is a powerful tool for both developers and system administrators, designed to streamline every phase of the application lifecycle, from initial project creation to ongoing production management.
 
 ## Installation
 
-The `gingerjs-cli` is designed to be installed globally on your machine, making it available everywhere.
+The `gingee-cli` is designed to be installed globally on your machine, making it available everywhere.
 
 ```bash
-npm install -g gingerjs-cli
+npm install -g gingee-cli
 ```
-After installation, you will have access to the `gingerjs-cli` command in your terminal.
+After installation, you will have access to the `gingee-cli` command in your terminal.
 
 ---
 
@@ -17,15 +17,15 @@ After installation, you will have access to the `gingerjs-cli` command in your t
 
 ### Project Initialization
 
-This is the main entry point for starting a new GingerJS project.
+This is the main entry point for starting a new Gingee project.
 
 #### `init <project-name>`
 
-Scaffolds a complete, new GingerJS project in a new directory. It launches an interactive wizard to guide you through the setup.
+Scaffolds a complete, new Gingee project in a new directory. It launches an interactive wizard to guide you through the setup.
 
 **Usage:**
 ```bash
-gingerjs-cli init my-awesome-project```
+gingee-cli init my-awesome-project```
 ```
 
 **Wizard Prompts:**
@@ -37,7 +37,7 @@ gingerjs-cli init my-awesome-project```
 
 ### Local Scaffolding
 
-These commands should be run from the root directory of an existing GingerJS project.
+These commands should be run from the root directory of an existing Gingee project.
 
 #### `add-app <app-name>`
 
@@ -45,7 +45,7 @@ Scaffolds a new, working "hello world" application inside your project's `web` d
 
 **Usage:**
 ```bash
-gingerjs-cli add-app my-blog
+gingee-cli add-app my-blog
 ```
 
 **Wizard Prompts:**
@@ -55,11 +55,11 @@ gingerjs-cli add-app my-blog
 
 #### `add-script <app-name> <script-path>`
 
-Quickly creates a new server script file, pre-populated with the standard GingerJS boilerplate.
+Quickly creates a new server script file, pre-populated with the standard Gingee boilerplate.
 
 **Usage:**
 ```bash
-gingerjs-cli add-script my-blog api/posts
+gingee-cli add-script my-blog api/posts
 ```
 Creates ./web/my-blog/box/api/posts.js
 
@@ -76,12 +76,12 @@ Authenticates the CLI with a Glade admin panel and saves the session for subsequ
 **Usage:**
 -  Login to a local server
 ```bash
-gingerjs-cli login
+gingee-cli login
 ```
 
 -  Login to a remote server
 ```bash
-gingerjs-cli login https://prod.my-server.com
+gingee-cli login https://prod.my-server.com
 ```
 
 **Options:**
@@ -94,7 +94,7 @@ Logs out of a specific Glade session by deleting the stored credentials.
 
 **Usage:**
 ```bash
-gingerjs-cli logout https://prod.my-server.com
+gingee-cli logout https://prod.my-server.com
 ```
 
 #### `list-apps`
@@ -103,11 +103,11 @@ Lists all applications installed on the target server.
 
 **Usage:**
 ```bash
-gingerjs-cli list-apps --server https://prod.my-server.com
+gingee-cli list-apps --server https://prod.my-server.com
 ```
 
 **Options:**
--   `-s, --server <url>` (Optional): The base URL of the target GingerJS server. Defaults to the server you last logged into, or `http://localhost:7070`.
+-   `-s, --server <url>` (Optional): The base URL of the target Gingee server. Defaults to the server you last logged into, or `http://localhost:7070`.
 
 ---
 
@@ -129,7 +129,7 @@ These powerful commands allow for remote deployment and management of your appli
 
 **Example Usage:**```bash
 # Upgrade the 'my-blog' app on a production server
-gingerjs-cli upgrade-app --appName my-blog --ginPath ./builds/my-blog-v2.gin --server https://prod.server```
+gingee-cli upgrade-app --appName my-blog --ginPath ./builds/my-blog-v2.gin --server https://prod.server```
 
 ---
 
@@ -150,7 +150,7 @@ Commands for the disaster recovery and rollback features.
 
 ### Service Management
 
-Commands for running GingerJS as a native background service. These commands must be run from a project's root directory and typically require `sudo` or Administrator privileges.
+Commands for running Gingee as a native background service. These commands must be run from a project's root directory and typically require `sudo` or Administrator privileges.
 
 -   **`service install`**: Installs and starts the server as a background service.
 -   **`service uninstall`**: Stops and removes the background service.

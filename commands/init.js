@@ -12,13 +12,13 @@ async function init(projectName) {
 
   const spinner = ora();
   try {
-    console.log(chalk.blueBright('🚀 Welcome to GingerJS! Let\'s create your new project.'));
+    console.log(chalk.blueBright('🚀 Welcome to Gingee! Let\'s create your new project.'));
     const projectPath = path.resolve(process.cwd(), projectName);
 
     let currentPath = process.cwd();
     while (currentPath !== path.parse(currentPath).root) {
-      if (fs.existsSync(path.join(currentPath, 'ginger.json'))) {
-        throw new Error(`Command cannot be run inside an existing GingerJS project.\nDetected project root at: ${currentPath}`);
+      if (fs.existsSync(path.join(currentPath, 'gingee.json'))) {
+        throw new Error(`Command cannot be run inside an existing Gingee project.\nDetected project root at: ${currentPath}`);
       }
       currentPath = path.dirname(currentPath);
     }
@@ -72,8 +72,8 @@ async function init(projectName) {
     spinner.start('Installing `glade` admin panel...');
 
     // Find the glade.gin file using require.resolve, which is robust.
-    // It looks for the 'gingerjs-core' package in the CLI's own node_modules.
-    const gladeGinPath = require.resolve('gingerjs-core/templates/glade.gin');
+    // It looks for the 'gingee' package in the CLI's own node_modules.
+    const gladeGinPath = require.resolve('gingee/templates/glade.gin');
     const gladePackageBuffer = fs.readFileSync(gladeGinPath);
     const gladeDestPath = path.join(projectPath, 'web', 'glade');
 
@@ -107,14 +107,14 @@ async function init(projectName) {
       spinner.succeed('Dependencies installed.');
     }
 
-    console.log(chalk.bgGreen(`\n✅ Success!`), chalk.blueBright(`Your GingerJS project "${projectName}" is ready.`));
+    console.log(chalk.bgGreen(`\n✅ Success!`), chalk.blueBright(`Your Gingee project "${projectName}" is ready.`));
     console.log(`\nTo get started, run the following commands:\n`);
     console.log(chalk.blueBright(`  cd ${projectName}`));
     //console.log(chalk.blueBright(`  git init && git add . && git commit -m "Initial commit"`));
     console.log(chalk.blueBright(`  npm run start`));
 
     console.log(`\n\nFor production, you have two options:`);
-    console.log(chalk.cyan(`  1. Native Service: sudo gingerjs-cli service install`));
+    console.log(chalk.cyan(`  1. Native Service: sudo gingee-cli service install`));
     console.log(chalk.cyan(`  2. PM2:           pm2 start`));
     console.log(`     (Customize your PM2 deployment in ecosystem.config.js)`);
 

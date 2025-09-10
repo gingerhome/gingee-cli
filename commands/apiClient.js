@@ -4,7 +4,7 @@ const path = require('path');
 const os = require('os');
 const crypto = require('crypto');
 
-const configDir = path.join(os.homedir(), '.gingerjs');
+const configDir = path.join(os.homedir(), '.gingee');
 const credsDir = path.join(configDir, 'sessions');
 
 /**
@@ -28,7 +28,7 @@ async function getAuthenticatedClient(serverUrl = 'http://localhost:7070') {
     const credsPath = getCredsFilePath(serverUrl);
 
     if (!fs.existsSync(credsPath)) {
-        throw new Error("You are not logged in. Please run `gingerjs login <server-url>` first.");
+        throw new Error("You are not logged in. Please run `gingee-cli login <server-url>` first.");
     }
     
     const { cookie } = fs.readJsonSync(credsPath);

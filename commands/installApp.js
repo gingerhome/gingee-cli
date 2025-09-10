@@ -16,7 +16,7 @@ async function installApp(options) {
     const { default: chalk } = await import('chalk');
     const { default: ora } = await import('ora');
     const spinner = ora('Preparing to install application...').start();
-    const tempDir = path.join(require('os').tmpdir(), `ginger-install-local-${Date.now()}`);
+    const tempDir = path.join(require('os').tmpdir(), `gingee-install-local-${Date.now()}`);
 
     try {
         const { serverUrl = 'http://localhost:7070', appName, ginPath: ginFilePath, file: presetFilePath } = options;
