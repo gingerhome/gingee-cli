@@ -24,6 +24,7 @@ describe('logout.js - Integration Test', () => {
             mkdirSync: jest.fn(),
             existsSync: jest.fn().mockReturnValue(true), // Simulate session file exists
             removeSync: jest.fn(),
+            ensureDirSync: jest.fn()
         }));
         const fs = require('fs-extra');
 
@@ -51,6 +52,7 @@ describe('logout.js - Integration Test', () => {
             mkdirSync: jest.fn(),
             existsSync: jest.fn().mockReturnValue(false), // Simulate session file does NOT exist
             removeSync: jest.fn(),
+            ensureDirSync: jest.fn()
         }));
         const fs = require('fs-extra');
         
@@ -62,7 +64,8 @@ describe('logout.js - Integration Test', () => {
 
         // --- ASSERTIONS ---
         // Verify it checked for the file
-        expect(fs.existsSync).toHaveBeenCalledTimes(2); //first for sessions folder and then for session file
+        expect(fs.ensureDirSync).toHaveBeenCalledTimes(1); //first for sessions folder
+        expect(fs.existsSync).toHaveBeenCalledTimes(1); //then for session file
         // Verify remove was NOT called
         expect(fs.removeSync).not.toHaveBeenCalled();
     });

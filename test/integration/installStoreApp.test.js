@@ -39,7 +39,7 @@ describe('installStoreApp.js - Integration Test', () => {
         jest.mock('axios', () => ({
             get: jest.fn((url) => {
                 if (url === 'http://fakestore.com/gstore.json') {
-                    return Promise.resolve({ data: { apps: [{ name: 'my-app' }] } });
+                    return Promise.resolve({ data: { apps: [{ name: 'my-app', installName: 'my-app' }] } });
                 }
                 if (url === 'http://example.com/apps/my-app.gin') {
                     return Promise.resolve({ data: Buffer.from('fake-gin-buffer') });

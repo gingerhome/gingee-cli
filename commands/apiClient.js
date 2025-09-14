@@ -14,9 +14,7 @@ const credsDir = path.join(configDir, 'sessions');
 function getCredsFilePath(serverUrl) {
     // Use a hash to create a unique, fixed-length, safe filename
     const hash = crypto.createHash('sha256').update(serverUrl).digest('hex');
-    if (!fs.existsSync(credsDir)) {
-        fs.mkdirSync(credsDir);
-    }
+    fs.ensureDirSync(credsDir);
     return path.join(credsDir, `${hash}.json`);
 }
 

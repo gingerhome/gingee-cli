@@ -27,7 +27,7 @@ async function installStoreApp(appName, options) {
         spinner.start(`Fetching manifest from ${resolvedStoreUrl}...`);
         
         const manifestResponse = await axios.get(resolvedStoreUrl);
-        const appConfig = manifestResponse.data.apps.find(a => a.name === appName);
+        const appConfig = manifestResponse.data.apps.find(a => a.installName === appName);
         if (!appConfig) {
             throw new Error(`App '${appName}' not found in the store manifest.`);
         }

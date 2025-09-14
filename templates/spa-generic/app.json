@@ -1,0 +1,12 @@
+{
+  "name": "my-spa-app",
+  "version": "1.0.0",
+  "type": "SPA",
+  "spa": {
+    "enabled": true,
+    "dev_server_proxy": "http://localhost:5173",
+    "build_path": "./dist",
+    "fallback_path": "index.html"
+  },
+  "db": []
+}
