@@ -1,0 +1,7 @@
+# Set the default behavior to handle line endings automatically.
+* text=auto
+
+# Explicitly force Unix-style (LF) line endings for critical script files.
+# This ensures that our executables are always cross-platform compatible.
+*.js    text eol=lf
+*.sh    text eol=lf
