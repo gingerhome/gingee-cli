@@ -17,6 +17,7 @@ describe('listBackups.js - Integration Test', () => {
         jest.unstable_mockModule('chalk', () => ({ default: { bgGreen: jest.fn(s => s), bgRed: jest.fn(s => s), bgBlue: jest.fn(s => s), bgYellow: jest.fn(s => s), green: jest.fn(s => s), blueBright: jest.fn(s => s), red: jest.fn(s => s) }}));
 
         jest.mock('../../commands/apiClient', () => ({
+            ensureAuthenticated: jest.fn().mockResolvedValue(true),
             listBackups: jest.fn().mockResolvedValue({
                 status: 'success',
                 backups: [
@@ -52,6 +53,7 @@ describe('listBackups.js - Integration Test', () => {
         jest.unstable_mockModule('chalk', () => ({ default: { bgGreen: jest.fn(s => s), bgRed: jest.fn(s => s), bgBlue: jest.fn(s => s), bgYellow: jest.fn(s => s), green: jest.fn(s => s), blueBright: jest.fn(s => s), red: jest.fn(s => s) }}));
 
         jest.mock('../../commands/apiClient', () => ({
+            ensureAuthenticated: jest.fn().mockResolvedValue(true),
             listBackups: jest.fn().mockResolvedValue({
                 status: 'success',
                 backups: [] // Simulate empty list

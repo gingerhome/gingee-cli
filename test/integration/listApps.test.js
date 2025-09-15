@@ -16,6 +16,7 @@ describe('listApps.js - Integration Test', () => {
         // --- MOCK DEPENDENCIES ---
         const mockAxiosInstance = { get: jest.fn() };
         jest.mock('../../commands/apiClient', () => ({
+            ensureAuthenticated: jest.fn().mockResolvedValue(true),
             getAuthenticatedClient: jest.fn().mockResolvedValue({
                 client: mockAxiosInstance,
                 serverUrl: 'http://test.server:7070'
@@ -65,6 +66,7 @@ describe('listApps.js - Integration Test', () => {
 
         // --- MOCK DEPENDENCIES ---
         jest.mock('../../commands/apiClient', () => ({
+            ensureAuthenticated: jest.fn().mockResolvedValue(true),
             getAuthenticatedClient: jest.fn().mockRejectedValue(new Error('You are not logged in.'))
         }));
         

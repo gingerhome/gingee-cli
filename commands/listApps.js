@@ -1,13 +1,18 @@
-const { getAuthenticatedClient } = require('./apiClient');
+const apiClient = require('./apiClient');
 
 async function listApps(options) {
     const { default: chalk } = await import('chalk');
     const { default: ora } = await import('ora');
-    const spinner = ora('Fetching application list...').start();
+    const spinner = ora();
 
     try {
         const { serverUrl = 'http://localhost:7070' } = options;
-        const { client } = await getAuthenticatedClient(serverUrl);
+
+        await apiClient.ensureAuthenticated(serverUrl);
+
+        spinner.start('Fetching installed applications...');
+        
+        const { client } = await apiClient.getAuthenticatedClient(serverUrl);
         const response = await client.get(`${serverUrl}/glade/api/apps`);
         
         if (response.data.status !== 'success' || !response.data.apps) {

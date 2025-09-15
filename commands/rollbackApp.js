@@ -10,6 +10,8 @@ async function rollbackApp(options) {
     const spinner = ora();
 
     try {
+        await apiClient.ensureAuthenticated(serverUrl);
+        
         if (presetFilePath) {
             // --- NON-INTERACTIVE MODE ---
             console.log(chalk.blueBright(`Running in non-interactive mode using preset file: ${presetFilePath}`));

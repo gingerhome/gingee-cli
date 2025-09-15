@@ -25,6 +25,7 @@ describe('installApp.js - Integration Test (Local Install)', () => {
         const fs = require('fs-extra');
 
         jest.mock('../../commands/apiClient', () => ({
+            ensureAuthenticated: jest.fn().mockResolvedValue(true),
             installApp: jest.fn().mockResolvedValue({ status: 'success' })
         }));
         const apiClient = require('../../commands/apiClient');

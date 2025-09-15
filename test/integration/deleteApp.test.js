@@ -16,6 +16,7 @@ describe('deleteApp.js - Integration Test', () => {
         jest.unstable_mockModule('inquirer', () => ({ default: { prompt: promptMock } }));
 
         jest.mock('../../commands/apiClient', () => ({
+            ensureAuthenticated: jest.fn().mockResolvedValue(true),
             deleteApp: jest.fn().mockResolvedValue({ status: 'success' })
         }));
         const apiClient = require('../../commands/apiClient');
@@ -48,6 +49,7 @@ describe('deleteApp.js - Integration Test', () => {
         jest.unstable_mockModule('inquirer', () => ({ default: { prompt: promptMock } }));
         
         jest.mock('../../commands/apiClient', () => ({
+            ensureAuthenticated: jest.fn().mockResolvedValue(true),
             deleteApp: jest.fn()
         }));
         const apiClient = require('../../commands/apiClient');

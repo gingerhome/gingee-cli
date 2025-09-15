@@ -21,12 +21,14 @@ async function upgradeStoreApp(appName, options) {
     const { gStoreUrl, serverUrl } = options;
 
     try {
+        await apiClient.ensureAuthenticated(serverUrl);
+
         // 1. Resolve URL and fetch the store manifest
         const resolvedStoreUrl = _resolveStoreUrl(gStoreUrl);
         spinner.start(`Fetching manifest from ${resolvedStoreUrl}...`);
         
         const manifestResponse = await axios.get(resolvedStoreUrl);
-        const appConfig = manifestResponse.data.apps.find(a => a.name === appName);
+        const appConfig = manifestResponse.data.apps.find(a => a.installName === appName);
         if (!appConfig) {
             throw new Error(`App '${appName}' not found in the store manifest.`);
         }

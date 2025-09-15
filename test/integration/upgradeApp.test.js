@@ -27,6 +27,7 @@ describe('upgradeApp.js - Integration Test', () => {
         const fs = require('fs-extra');
 
         jest.mock('../../commands/apiClient', () => ({
+            ensureAuthenticated: jest.fn().mockResolvedValue(true),
             getAppPermissions: jest.fn().mockResolvedValue({
                 status: 'success',
                 grantedPermissions: ['db'] // The app currently only has 'db' permission

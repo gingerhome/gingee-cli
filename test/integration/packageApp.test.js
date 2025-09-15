@@ -24,6 +24,7 @@ describe('packageApp.js - Integration Test', () => {
         mockStream.end();
 
         jest.mock('../../commands/apiClient', () => ({
+            ensureAuthenticated: jest.fn().mockResolvedValue(true),
             packageApp: jest.fn().mockResolvedValue({
                 data: mockStream,
                 headers: {

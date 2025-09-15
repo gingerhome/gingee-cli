@@ -1,12 +1,16 @@
 const apiClient = require('./apiClient');
+const { _getHttpClientErrorMessage } = require('./installerUtils');
 
 async function listBackups(options) {
     const { default: chalk } = await import('chalk');
     const { default: ora } = await import('ora');
     const { serverUrl, appName } = options;
-    const spinner = ora(`Fetching backups for '${appName}'...`).start();
+    const spinner = ora();
 
     try {
+        await apiClient.ensureAuthenticated(serverUrl);
+
+        spinner.start(`Fetching backups for '${appName}'...`);
         const result = await apiClient.listBackups(serverUrl, appName);
         
         if (result.status !== 'success' || !result.backups) {

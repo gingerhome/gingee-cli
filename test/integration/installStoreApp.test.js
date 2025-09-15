@@ -60,6 +60,7 @@ describe('installStoreApp.js - Integration Test', () => {
 
 
         jest.mock('../../commands/apiClient', () => ({
+            ensureAuthenticated: jest.fn().mockResolvedValue(true),
             installApp: jest.fn(() => {
                 return Promise.resolve({ status: 'success' });
             })
@@ -92,6 +93,7 @@ describe('installStoreApp.js - Integration Test', () => {
         });
 
         jest.mock('../../commands/apiClient', () => ({
+            ensureAuthenticated: jest.fn().mockResolvedValue(true),
             installApp: jest.fn(() => {
                 return Promise.reject(new Error('Server is offline'));
             })

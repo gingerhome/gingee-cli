@@ -43,6 +43,26 @@ async function getAuthenticatedClient(serverUrl = 'http://localhost:7070') {
     return { client, serverUrl };
 }
 
+async function ensureAuthenticated(serverUrl) {
+    const { default: ora } = await import('ora');
+    const spinner = ora('Verifying session...').start();
+    try {
+        const { client } = await getAuthenticatedClient(serverUrl);
+        // Use a simple, lightweight endpoint for the check.
+        await client.get(`${serverUrl}/glade/api/apps`);
+        spinner.succeed('Session verified.');
+    } catch (err) {
+        spinner.fail('Session verification failed.');
+        if (err.response && err.response.status === 401) {
+            throw new Error(`Authentication failed. Your session may have expired. Please run 'gingee-cli login --serverUrl ${serverUrl}' again.`);
+        }else if(err.message.includes('You are not logged in')) {
+            throw err; // Propagate the not logged in error as is.
+        }
+        // For other errors (e.g., network, server down), provide a generic message.
+        throw new Error(`Could not connect to the server at ${serverUrl}. Please ensure it is running and accessible.`);
+    }
+}
+
 function deleteSession(serverUrl) {
     const credsPath = getCredsFilePath(serverUrl);
     if (fs.existsSync(credsPath)) {
@@ -125,6 +145,7 @@ async function getAppPermissions(serverUrl, appName) {
 module.exports = { 
     getCredsFilePath, 
     getAuthenticatedClient, 
+    ensureAuthenticated,
     deleteSession,
     installApp,
     upgradeApp,

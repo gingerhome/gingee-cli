@@ -10,6 +10,8 @@ async function deleteApp(options) {
     const spinner = ora();
 
     try {
+        await apiClient.ensureAuthenticated(serverUrl);
+        
         let confirmation = false;
         if (presetFilePath) {
             // --- NON-INTERACTIVE MODE ---

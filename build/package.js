@@ -5,7 +5,7 @@ async function buildCliPackage() {
     try {
         console.log('Starting Gingee CLI package build...');
 
-        const GINGEE_VERSION = "^1.0.1";
+        const GINGEE_VERSION = "^1.0.2"; // Update this as needed
 
         // 1. Define Paths
         const projectRoot = path.resolve(__dirname, '..');

@@ -15,6 +15,8 @@ async function upgradeApp(options) {
 
     try {
 
+        await apiClient.ensureAuthenticated(serverUrl);
+
         if (!fs.existsSync(ginFilePath)) {
             throw new Error(`Package file not found at: ${ginFilePath}`);
         }

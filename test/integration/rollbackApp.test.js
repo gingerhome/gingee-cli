@@ -15,6 +15,7 @@ describe('rollbackApp.js - Integration Test', () => {
         jest.unstable_mockModule('chalk', () => ({ default: { bgGreen: jest.fn(s => s), bgRed: jest.fn(s => s), bgBlue: jest.fn(s => s), bgYellow: jest.fn(s => s), green: jest.fn(s => s), blueBright: jest.fn(s => s), red: jest.fn(s => s) }}));
 
         jest.mock('../../commands/apiClient', () => ({
+            ensureAuthenticated: jest.fn().mockResolvedValue(true),
             analyzeBackup: jest.fn().mockResolvedValue({
                 status: 'success',
                 version: '1.0.0',
@@ -29,6 +30,7 @@ describe('rollbackApp.js - Integration Test', () => {
         const apiClient = require('../../commands/apiClient');
 
         jest.mock('../../commands/installerUtils', () => ({
+            _httpClientErrorMessage: jest.fn(err => err.message), // Simple mock for error messages
             // We only need to mock the interactive part
             _getRollbackPermissions: jest.fn().mockResolvedValue(['db']) // User approves the rollback, resulting in only 'db'
         }));

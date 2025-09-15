@@ -1,14 +1,18 @@
 const apiClient = require('./apiClient');
 const fs = require('fs-extra');
 const path = require('path');
+const { _getHttpClientErrorMessage } = require('./installerUtils');
 
 async function packageApp(options) {
     const { default: chalk } = await import('chalk');
     const { default: ora } = await import('ora');
     const { serverUrl, appName, dest: destFolder } = options;
-    const spinner = ora(`Requesting package for '${appName}' from server...`).start();
+    const spinner = ora();
 
     try {
+        await apiClient.ensureAuthenticated(serverUrl);
+
+        spinner.start(`Requesting package for '${appName}' from server...`);
         // This returns a readable stream of the file being downloaded.
         const response = await apiClient.packageApp(serverUrl, appName);
         const fileStream = response.data;

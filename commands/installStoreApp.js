@@ -22,6 +22,8 @@ async function installStoreApp(appName, options) {
     const { gStoreUrl, serverUrl } = options;
 
     try {
+        await apiClient.ensureAuthenticated(serverUrl);
+
         // Step 1: Resolve the manifest URL using the new utility
         const resolvedStoreUrl = _resolveStoreUrl(gStoreUrl);
         spinner.start(`Fetching manifest from ${resolvedStoreUrl}...`);
