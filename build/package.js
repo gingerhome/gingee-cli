@@ -5,8 +5,6 @@ async function buildCliPackage() {
     try {
         console.log('Starting Gingee CLI package build...');
 
-        const GINGEE_VERSION = "^1.0.3"; // Update this as needed
-
         // 1. Define Paths
         const projectRoot = path.resolve(__dirname, '..');
         const packageDest = path.join(projectRoot, 'build', 'dist', 'gingee-cli');
@@ -57,9 +55,6 @@ async function buildCliPackage() {
             dependencies: sourcePackageJson.dependencies,
             optionalDependencies: sourcePackageJson.optionalDependencies
         };
-
-        console.log(`Setting Gingee version to "${GINGEE_VERSION}"`);
-        distPackageJson.dependencies["gingee"] = GINGEE_VERSION;
 
         // 5. Write the final package.json
         fs.writeJsonSync(

@@ -1,6 +1,6 @@
 {
   "name": "gingee-cli",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "index.js",
   "bin": {
     "gingee-cli": "./index.js"
@@ -45,7 +45,6 @@
     "commander": "^14.0.0",
     "form-data": "^4.0.4",
     "fs-extra": "^11.3.1",
-    "gingee": "^1.0.3",
     "inquirer": "^12.9.2",
     "ora": "^8.2.0",
     "yauzl": "^3.2.0"

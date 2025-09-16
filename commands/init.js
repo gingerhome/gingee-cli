@@ -56,8 +56,9 @@ async function init(projectName) {
 
     spinner.start('Scaffolding project files...');
     fs.mkdirSync(projectPath);
-    const templatePath = path.join(__dirname, '..', 'templates', 'project');
-    fs.copySync(templatePath, projectPath);
+    const templatePath = path.join(__dirname, '..', 'templates');
+    const projectTemplatePath = path.join(templatePath, 'project');
+    fs.copySync(projectTemplatePath, projectPath);
 
     const pkgJsonPath = path.join(projectPath, 'package.json');
     const pkgJson = fs.readJsonSync(pkgJsonPath);
@@ -73,7 +74,7 @@ async function init(projectName) {
 
     // Find the glade.gin file using require.resolve, which is robust.
     // It looks for the 'gingee' package in the CLI's own node_modules.
-    const gladeGinPath = require.resolve('gingee/templates/glade.gin');
+    const gladeGinPath = path.join(templatePath, 'glade.gin');
     const gladePackageBuffer = fs.readFileSync(gladeGinPath);
     const gladeDestPath = path.join(projectPath, 'web', 'glade');
 
