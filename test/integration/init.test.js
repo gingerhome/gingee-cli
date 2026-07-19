@@ -75,6 +75,7 @@ describe('init.js - Integration Test', () => {
             adminUser: 'admin',
             adminPass: 'password123',
             confirmPassword: 'password123',
+            depProfile: 'recommended',
             installDeps: true
         }));
 
@@ -125,8 +126,18 @@ describe('init.js - Integration Test', () => {
             expect.any(Object)
         );
 
-        // Verify npm install was called
-        expect(execSync).toHaveBeenCalledWith('npm install', { cwd: expect.any(String), stdio: 'ignore' });
+        // Slim core install, then recommended optionals
+        expect(execSync).toHaveBeenCalledWith(
+            'npm install --omit=optional',
+            { cwd: expect.any(String), stdio: 'ignore' }
+        );
+        expect(execSync).toHaveBeenCalledWith(
+            expect.stringMatching(/^npm install /),
+            { cwd: expect.any(String), stdio: 'ignore' }
+        );
+        // Second call should not be omit-only
+        const installCmds = execSync.mock.calls.map((c) => c[0]);
+        expect(installCmds.some((c) => c.includes('pg') && c.includes('pdfmake'))).toBe(true);
     });
 
     it('should scaffold a project but skip dependency installation if user declines', async () => {
@@ -168,6 +179,7 @@ describe('init.js - Integration Test', () => {
             adminUser: 'admin',
             adminPass: 'password123',
             confirmPassword: 'password123',
+            depProfile: 'minimal',
             installDeps: false
         }));
 
@@ -188,6 +200,61 @@ describe('init.js - Integration Test', () => {
         // --- ASSERT ---
         // Verify npm install was NOT called
         expect(execSync).not.toHaveBeenCalled();
+    });
+
+    it('should run only slim core install when profile is minimal', async () => {
+        const projectName = 'minimal-project';
+
+        jest.mock('child_process', () => ({
+            execSync: jest.fn(() => true),
+        }));
+        const { execSync } = require('child_process');
+
+        jest.mock('fs-extra', () => ({
+            existsSync: jest.fn().mockReturnValue(false),
+            readJsonSync: jest.fn((p) => {
+                if (p.includes('package.json')) return { name: 'template-pkg' };
+                if (p.includes('app.json')) {
+                    return { env: { ADMIN_USERNAME: 'admin', ADMIN_PASSWORD_HASH: '$fake-argon2-hash$' } };
+                }
+                throw new Error('File not found');
+            }),
+            readFileSync: jest.fn(() => Buffer.from('fake-gin-file')),
+            mkdirSync: jest.fn().mockReturnValue(true),
+            copySync: jest.fn().mockReturnValue(true),
+            writeJsonSync: jest.fn().mockReturnValue(true),
+        }));
+
+        jest.mock('argon2', () => ({
+            hash: jest.fn().mockResolvedValue('$fake-argon2-hash$'),
+        }));
+
+        jest.unstable_mockModule('inquirer', () => ({
+            default: {
+                prompt: jest.fn(() =>
+                    Promise.resolve({
+                        adminUser: 'admin',
+                        adminPass: 'password123',
+                        confirmPassword: 'password123',
+                        depProfile: 'minimal',
+                        installDeps: true
+                    })
+                )
+            }
+        }));
+
+        jest.mock('../../commands/installerUtils', () => ({
+            _unzipBuffer: jest.fn().mockResolvedValue(true),
+        }));
+
+        init = require('../../commands/init').init;
+        await init(projectName);
+
+        expect(execSync).toHaveBeenCalledTimes(1);
+        expect(execSync).toHaveBeenCalledWith(
+            'npm install --omit=optional',
+            { cwd: expect.any(String), stdio: 'ignore' }
+        );
     });
 
     it('should fail if the project directory already exists', async () => {
