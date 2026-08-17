@@ -137,7 +137,9 @@ describe('init.js - Integration Test', () => {
         );
         // Second call should not be omit-only
         const installCmds = execSync.mock.calls.map((c) => c[0]);
-        expect(installCmds.some((c) => c.includes('pg') && c.includes('pdfmake'))).toBe(true);
+        expect(
+          installCmds.some((c) => c.includes('sharp') && c.includes('pg') && c.includes('pdfmake'))
+        ).toBe(true);
     });
 
     it('should scaffold a project but skip dependency installation if user declines', async () => {

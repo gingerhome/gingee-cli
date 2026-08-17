@@ -89,19 +89,20 @@ async function init(projectName) {
       {
         type: 'list',
         name: 'depProfile',
-        message: 'Optional feature packages (SQL drivers other than SQLite, PDF, charts, SendGrid, Gemini):',
+        message:
+          'Optional feature packages (image/sharp, SQL drivers other than SQLite, PDF, charts, SendGrid, Gemini):',
         default: 'recommended',
         choices: [
           {
-            name: 'Minimal — core + SQLite only (fastest; use --omit=optional style install)',
+            name: 'Minimal — core + SQLite only (fastest; no sharp / image; omit=optional style)',
             value: 'minimal'
           },
           {
-            name: 'Recommended — PostgreSQL, PDF, charts, SendGrid, Gemini (good default)',
+            name: 'Recommended — image (sharp), PostgreSQL, PDF, charts, SendGrid, Gemini (good default)',
             value: 'recommended'
           },
           {
-            name: 'Full — all optional packages (all SQL drivers + media + providers)',
+            name: 'Full — all optional packages (image, all SQL drivers, media, providers)',
             value: 'full'
           },
           {
@@ -205,7 +206,7 @@ async function init(projectName) {
     } else {
       console.log(
         chalk.blueBright(
-          'Optional packages: none (SQLite, console email, and mock AI work without extras).'
+          'Optional packages: none (SQLite, console email, and mock AI work without extras; image needs sharp).'
         )
       );
     }
@@ -220,7 +221,9 @@ async function init(projectName) {
     }
     console.log(chalk.blueBright('  npm run start'));
 
-    console.log(`\nAdd more features later with e.g. ${chalk.cyan('npm install pg pdfmake')}`);
+    console.log(
+      `\nAdd more features later with e.g. ${chalk.cyan('npm install sharp pg pdfmake')}`
+    );
     console.log('(Missing optionals fail at use-time with FEATURE_NOT_INSTALLED.)\n');
 
     console.log(`\nFor production, you have two options:`);

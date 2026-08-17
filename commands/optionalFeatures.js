@@ -1,10 +1,16 @@
 /**
- * Optional feature packages for Gingee (match gingee package.json optionalDependencies).
+ * Optional feature packages for Gingee (keep in sync with gingee package.json
+ * optionalDependencies and docs/server-config.md → Optional npm feature packages).
  * Used by `gingee-cli init` so new projects can install a slim core, then add only what they need.
+ *
+ * @type {Record<string, { name: string, packages: string[], description: string }>}
  */
-
-/** @type {Record<string, { name: string, packages: string[], description: string }>} */
 const FEATURE_OPTIONS = {
+  image: {
+    name: 'Image processing (sharp)',
+    packages: ['sharp'],
+    description: "require('image') — resize, filters, format conversion"
+  },
   postgres: {
     name: 'PostgreSQL driver (pg)',
     packages: ['pg'],
@@ -48,7 +54,7 @@ const FEATURE_OPTIONS = {
 };
 
 /** Recommended developer set (Joy without Oracle / all SQL engines). */
-const RECOMMENDED_FEATURES = ['postgres', 'charts', 'pdf', 'sendgrid', 'gemini'];
+const RECOMMENDED_FEATURES = ['image', 'postgres', 'charts', 'pdf', 'sendgrid', 'gemini'];
 
 /** All optional feature keys. */
 const ALL_FEATURES = Object.keys(FEATURE_OPTIONS);

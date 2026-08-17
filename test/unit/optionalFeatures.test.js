@@ -26,10 +26,16 @@ describe('optionalFeatures', () => {
   });
 
   test('packagesForFeatures expands and dedupes', () => {
-    const pkgs = packagesForFeatures(['charts', 'pdf', 'postgres']);
+    const pkgs = packagesForFeatures(['image', 'charts', 'pdf', 'postgres']);
     expect(pkgs).toEqual(
-      expect.arrayContaining(['pg', 'pdfmake', 'chartjs-node-canvas', 'canvas'])
+      expect.arrayContaining(['sharp', 'pg', 'pdfmake', 'chartjs-node-canvas', 'canvas'])
     );
     expect(new Set(pkgs).size).toBe(pkgs.length);
+  });
+
+  test('recommended includes image (sharp) for require(image)', () => {
+    const pkgs = packagesForFeatures(RECOMMENDED_FEATURES);
+    expect(RECOMMENDED_FEATURES).toContain('image');
+    expect(pkgs).toContain('sharp');
   });
 });
