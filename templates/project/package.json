@@ -7,7 +7,7 @@
     "dev": "nodemon start.js"
   },
   "dependencies": {
-    "gingee": "^1.5.0"
+    "gingee": "^1.5.1"
   },
   "devDependencies": {
     "nodemon": "^3.0.0"
